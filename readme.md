@@ -23,4 +23,4 @@ See wireframe: [https://wireframe.cc/Th0e6q](https://wireframe.cc/Th0e6q)
 - Feel free to use your favourite framework and plugins but please include attribution.
 
 ## Submission:
-Please commit code to the provided bitbucket repo and . Please add to this README.md if there are any build steps for your project. Otherwise we’ll assume the project runs from an index.html file.
+Please commit code to the provided bitbucket repo. Please add to this `README.md` if there are any build steps for your project. Otherwise we’ll assume the project runs from an index.html file.
