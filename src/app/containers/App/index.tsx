@@ -4,7 +4,7 @@ import {bindActionCreators, Dispatch} from 'redux';
 import {RouteComponentProps} from 'react-router';
 import {RolodexActions} from 'app/actions';
 import {RootState} from 'app/reducers';
-import {Header, Footer} from 'app/components';
+import {Header, Rolodex, Footer} from 'app/components';
 
 export namespace App {
     export interface Props extends RouteComponentProps<void> {
@@ -21,10 +21,10 @@ const mapDispatchToProps = (dispatch: Dispatch): Pick<App.Props, 'actions'> => (
     actions: bindActionCreators(RolodexActions, dispatch)
 });
 
-@connect(
+connect(
     mapStateToProps,
     mapDispatchToProps
-)
+);
 
 export class App extends React.Component<App.Props> {
 
@@ -38,6 +38,7 @@ export class App extends React.Component<App.Props> {
         return (
             <div>
                 <Header/>
+                <Rolodex/>
                 <Footer/>
             </div>
         );
