@@ -25,27 +25,26 @@ module.exports = {
     target: 'web',
     resolve: {
         extensions: ['.js', '.ts', '.tsx'],
-        mainFields: ['module', 'browser', 'main'],
         alias: {
             app: path.resolve(__dirname, 'src/app/')
         }
     },
     module: {
         rules: [
-            {
-                enforce: 'pre',
-                test: /\.tsx?$/,
-                use: 'eslint-loader',
-            },
+            // {
+            //     enforce: 'pre',
+            //     test: /\.tsx?$/,
+            //     use: ['ts-loader', 'eslint-loader'],
+            // },
             {
                 test: /\.tsx?$/,
                 use: [
-                    !isProduction && {
-                        loader: 'babel-loader',
-                        options: {
-                            plugins: ['react-hot-loader/babel']
-                        }
-                    },
+                    // !isProduction && {
+                    //     loader: 'babel-loader',
+                    //     options: {
+                    //         plugins: ['react-hot-loader/babel']
+                    //     }
+                    // },
                     'ts-loader'
                 ].filter(Boolean)
             },
