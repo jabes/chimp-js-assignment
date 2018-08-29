@@ -135,7 +135,8 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
                         this.state.team.push(data);
                         this.setState({
                             team: this.state.team,
-                            isFetchingPokemon: false
+                            isFetchingPokemon: false,
+                            searchValue: ''
                         });
                     });
                 }
@@ -188,7 +189,7 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
                 </div>
             );
         } else {
-            return <p className="zeroStateMessage">No pokemon are on your team.</p>
+            return <p className="zeroStateMessage">No pokemon added yet.</p>
         }
     };
 
@@ -221,6 +222,7 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
                         renderSuggestion={this.renderSuggestion}
                         inputProps={inputProps}
                     />
+                    <h2>My Team</h2>
                     {this.getTeam()}
                 </div>
             );
