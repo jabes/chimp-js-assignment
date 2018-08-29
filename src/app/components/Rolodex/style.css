@@ -1,15 +1,8 @@
 .teamList,
 .statsList {
-    max-width: 400px;
     margin: 0;
     padding: 0;
     list-style: none;
-}
-
-.teamList > li:not(:last-child) {
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid lightgrey;
 }
 
 .statsList > li {
@@ -18,7 +11,11 @@
 }
 
 .pokemonCard {
+    display: inline-block;
+    width: 300px;
+    height: 180px;
     padding: 20px;
+    margin: 0 10px 10px 0;
     position: relative;
     background-color: lightblue;
     border-radius: 10px;

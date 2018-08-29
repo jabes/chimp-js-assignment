@@ -21,6 +21,7 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
 
     constructor(props: Rolodex.Props) {
         super(props);
+
         this.state = {
             isLoaded: false,
             searchValue: '',
@@ -66,6 +67,12 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
     };
 
     getSuggestionValue = (suggestion: Suggestion) => suggestion.name;
+
+    renderInputComponent = (inputProps: Autosuggest.InputProps<Suggestion>): JSX.Element => (
+        <div>
+            <input {...inputProps} disabled={this.state.team.length >= 6}/>
+        </div>
+    );
 
     renderSuggestion = (suggestion: Suggestion): JSX.Element => (
         <div onClick={this.addPokemon.bind(this, suggestion)}>
@@ -191,6 +198,7 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
                         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                         getSuggestionValue={this.getSuggestionValue}
+                        renderInputComponent={this.renderInputComponent}
                         renderSuggestion={this.renderSuggestion}
                         inputProps={inputProps}
                     />
