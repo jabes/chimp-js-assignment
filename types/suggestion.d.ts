@@ -1,0 +1,3 @@
+interface Suggestion {
+  name: string
+}
