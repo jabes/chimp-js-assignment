@@ -13,7 +13,7 @@ export namespace Rolodex {
         pokedex?: Pokedex,
         searchValue: string,
         suggestions: Suggestion[],
-        team: PokedexPokemonEntry[]
+        team: Pokemon[]
     }
 }
 
@@ -77,15 +77,15 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
         if (this.state.pokedex) {
             this.state.pokedex.pokemon_entries.forEach((object: PokedexPokemonEntry) => {
                 if (object.pokemon_species.name === suggestion.name) {
-                    this.state.team.push(object);
+                    this.fetchPokemon(object.entry_number);
                 }
             });
         }
     };
 
-    removePokemon = (object1: PokedexPokemonEntry) => {
-        this.state.team.forEach((object2: PokedexPokemonEntry, index: number) => {
-            if (object1 === object2) {
+    removePokemon = (pokemon1: Pokemon) => {
+        this.state.team.forEach((pokemon2: Pokemon, index: number) => {
+            if (pokemon1 === pokemon2) {
                 this.state.team.splice(index, 1);
                 this.setState({
                     team: this.state.team,
@@ -94,7 +94,7 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
         });
     };
 
-    fetchPokedex(): void {
+    fetchPokedex = (): void => {
         fetch('https://pokeapi.co/api/v2/pokedex/1')
             .then(
                 (response: Response) => {
@@ -112,19 +112,33 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
                     });
                 }
             )
-    }
+    };
 
-    getTeamList(): JSX.Element[] {
-        return this.state.team.map((object: PokedexPokemonEntry) => {
+    fetchPokemon = (index: number): void => {
+        fetch(`https://pokeapi.co/api/v2/pokemon/${index}`)
+            .then(
+                (response: Response) => {
+                    response.json().then((data) => {
+                        this.state.team.push(data);
+                        this.setState({
+                            team: this.state.team
+                        });
+                    });
+                }
+            )
+    };
+
+    getTeamList = (): JSX.Element[] => {
+        return this.state.team.map((pokemon: Pokemon) => {
             return <li>
                 <button className={style.deletePokemonButton}
-                        onClick={this.removePokemon.bind(this, object)}>
+                        onClick={this.removePokemon.bind(this, pokemon)}>
                     &times;
                 </button>
-                {object.pokemon_species.name}
+                {pokemon.name}
             </li>;
         });
-    }
+    };
 
     componentDidMount(): void {
         this.fetchPokedex();

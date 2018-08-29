@@ -5,7 +5,7 @@
     list-style: none;
 }
 
-.teamList > li {
+.teamList > li:not(:last-child) {
     margin-bottom: 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid lightgrey;
