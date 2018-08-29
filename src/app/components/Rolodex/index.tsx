@@ -87,6 +87,7 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
             this.state.pokedex.pokemon_entries.forEach((object: PokedexPokemonEntry) => {
                 if (object.pokemon_species.name === suggestion.name) {
                     this.fetchPokemon(object.entry_number);
+                    setTimeout(() => this.setState({searchValue: ''}), 0);
                 }
             });
         }
@@ -135,8 +136,7 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
                         this.state.team.push(data);
                         this.setState({
                             team: this.state.team,
-                            isFetchingPokemon: false,
-                            searchValue: ''
+                            isFetchingPokemon: false
                         });
                     });
                 }
