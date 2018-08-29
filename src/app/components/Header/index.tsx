@@ -9,7 +9,7 @@ export class Header extends React.Component<Header.Props> {
     render() {
         return (
             <header>
-                <h1>Rolodex</h1>
+                <h1>Pokédex</h1>
             </header>
         );
     }

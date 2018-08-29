@@ -56,10 +56,13 @@
 }
 
 .suggestion {
-    cursor: pointer;
-    padding: 10px 20px;
     color: grey;
     border-top: 1px solid lightgrey;
+}
+
+.suggestion > div {
+    cursor: pointer;
+    padding: 10px 20px;
 }
 
 .suggestionFirst {

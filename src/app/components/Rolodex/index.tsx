@@ -11,7 +11,8 @@ export namespace Rolodex {
         isLoaded: boolean,
         pokedex?: Pokedex,
         searchValue: string,
-        suggestions: Suggestion[]
+        suggestions: Suggestion[],
+        team: PokedexPokemonEntry[]
     }
 }
 
@@ -22,13 +23,14 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
         this.state = {
             isLoaded: false,
             searchValue: '',
-            suggestions: []
+            suggestions: [],
+            team: []
         };
     }
 
-    onChange = (event: React.FormEvent<HTMLInputElement>) => {
+    onChange = (event: React.FormEvent<any>, params?: Autosuggest.ChangeEvent | undefined) => {
         this.setState({
-            searchValue: event.currentTarget.value
+            searchValue: params ? params.newValue : ''
         });
     };
 
@@ -64,11 +66,21 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
 
     getSuggestionValue = (suggestion: Suggestion) => suggestion.name;
 
-    renderSuggestion = (suggestion: Suggestion) => (
-        <div>
+    renderSuggestion = (suggestion: Suggestion): JSX.Element => (
+        <div onClick={this.addPokemon.bind(this, suggestion)}>
             {suggestion.name}
         </div>
     );
+
+    addPokemon = (suggestion: Suggestion) => {
+        if (this.state.pokedex) {
+            this.state.pokedex.pokemon_entries.forEach((object: PokedexPokemonEntry) => {
+                if (object.pokemon_species.name === suggestion.name) {
+                    this.state.team.push(object);
+                }
+            });
+        }
+    };
 
     fetchPokedex(): void {
         fetch('https://pokeapi.co/api/v2/pokedex/1')
@@ -90,11 +102,17 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
             )
     }
 
+    getTeamList(): JSX.Element[] {
+        return this.state.team.map((object: PokedexPokemonEntry) => {
+            return <li>{object.pokemon_species.name}</li>;
+        });
+    }
+
     componentDidMount(): void {
         this.fetchPokedex();
     }
 
-    render() {
+    render(): JSX.Element {
 
         const inputProps: Autosuggest.InputProps<Suggestion> = {
             placeholder: `Search from ${this.state.pokedex ? this.state.pokedex.pokemon_entries.length : 0} pokemon...`,
@@ -118,6 +136,9 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
                         renderSuggestion={this.renderSuggestion}
                         inputProps={inputProps}
                     />
+                    <div>
+                        <ol>{this.getTeamList()}</ol>
+                    </div>
                 </div>
             );
         } else {
