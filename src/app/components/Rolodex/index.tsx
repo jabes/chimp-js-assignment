@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as Autosuggest from 'react-autosuggest';
+import * as theme from './autosuggest.css';
 
 export namespace Rolodex {
     export interface Props {
@@ -96,7 +97,7 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
     render() {
 
         const inputProps: Autosuggest.InputProps<Suggestion> = {
-            placeholder: 'Search for a pokemon...',
+            placeholder: `Search from ${this.state.pokedex ? this.state.pokedex.pokemon_entries.length : 0} pokemon...`,
             value: this.state.searchValue,
             onChange: this.onChange
         };
@@ -109,6 +110,7 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
             return (
                 <div>
                     <Autosuggest
+                        theme={theme}
                         suggestions={this.state.suggestions}
                         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
