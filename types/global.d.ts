@@ -5,6 +5,11 @@ declare module '*.css' {
     export = styles;
 }
 
+declare module "*.svg" {
+    const content: any;
+    export = content;
+}
+
 interface ApiObject {
     url: string,
     name: string

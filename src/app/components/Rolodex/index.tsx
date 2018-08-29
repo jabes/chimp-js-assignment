@@ -188,7 +188,7 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
                 </div>
             );
         } else {
-            return <p className="zeroStateMessage">No pokemon added yet.</p>
+            return <p className={style.zeroStateMessage}>No pokemon added yet.</p>
         }
     };
 
@@ -222,7 +222,7 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
                         renderSuggestion={this.renderSuggestion}
                         inputProps={inputProps}
                     />
-                    <h2>My Team</h2>
+                    <h2 className={style.teamHeader}>My Team</h2>
                     {this.getTeam()}
                 </div>
             );

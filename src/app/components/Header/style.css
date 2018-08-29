@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #B3A125;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.logo {
+    flex: none;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.title {
+    flex: auto;
+    font-weight: bold;
+    font-size: 3rem;
+    line-height: 1;
+    margin: 0;
+    color: white;
+    -webkit-text-stroke: 2px black;
+}

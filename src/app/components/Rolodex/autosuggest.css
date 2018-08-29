@@ -1,7 +1,6 @@
 .container {
     position: relative;
-    max-width: 400px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .input {
@@ -70,6 +69,6 @@
 }
 
 .suggestionHighlighted {
-    background-color: black;
-    color: white;
+    background-color: #3B4CCA;
+    color: #FFDE00;
 }
