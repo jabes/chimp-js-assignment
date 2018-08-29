@@ -14,7 +14,7 @@ See wireframe: [https://wireframe.cc/Th0e6q](https://wireframe.cc/Th0e6q)
 - User can not add more than 6 pokemon to their team.
 - User sees disabled search field when 6 pokemon are on the team.
 
-### Notes:
+## Notes:
 - Use [https://pokeapi.co/](https://pokeapi.co/)
 - UI should follow general layout defined in Wireframes: [https://wireframe.cc/Th0e6q](https://wireframe.cc/Th0e6q)
 - This should be a Single Page Application.
@@ -23,5 +23,5 @@ See wireframe: [https://wireframe.cc/Th0e6q](https://wireframe.cc/Th0e6q)
 - Feel free to use your favourite framework and plugins but please include attribution.
 - Any scaffolding code should be in it's own commit. This makes it easier for the team to do code review.
 
-## Submission:
-Please commit code to the provided bitbucket repo. Please add to this `README.md` if there are any build steps for your project. Otherwise we'll assume the project runs from an index.html file.
+## How To Use:
+- `npm install && npm start`
