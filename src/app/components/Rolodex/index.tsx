@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as Autosuggest from 'react-autosuggest';
 import * as theme from './autosuggest.css';
+import * as style from './style.css';
 
 export namespace Rolodex {
     export interface Props {
@@ -82,6 +83,17 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
         }
     };
 
+    removePokemon = (object1: PokedexPokemonEntry) => {
+        this.state.team.forEach((object2: PokedexPokemonEntry, index: number) => {
+            if (object1 === object2) {
+                this.state.team.splice(index, 1);
+                this.setState({
+                    team: this.state.team,
+                });
+            }
+        });
+    };
+
     fetchPokedex(): void {
         fetch('https://pokeapi.co/api/v2/pokedex/1')
             .then(
@@ -104,7 +116,13 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
 
     getTeamList(): JSX.Element[] {
         return this.state.team.map((object: PokedexPokemonEntry) => {
-            return <li>{object.pokemon_species.name}</li>;
+            return <li>
+                <button className={style.deletePokemonButton}
+                        onClick={this.removePokemon.bind(this, object)}>
+                    &times;
+                </button>
+                {object.pokemon_species.name}
+            </li>;
         });
     }
 
@@ -137,7 +155,9 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
                         inputProps={inputProps}
                     />
                     <div>
-                        <ol>{this.getTeamList()}</ol>
+                        <ol className={style.teamList}>
+                            {this.getTeamList()}
+                        </ol>
                     </div>
                 </div>
             );
