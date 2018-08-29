@@ -128,14 +128,26 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
             )
     };
 
+    getStatsList = (pokemon: Pokemon): JSX.Element[] => {
+        return pokemon.stats.map((stat: PokemonStat) => {
+            return <li>{stat.stat.name}: <b>{stat.base_stat}</b></li>;
+        });
+    };
+
     getTeamList = (): JSX.Element[] => {
         return this.state.team.map((pokemon: Pokemon) => {
-            return <li>
+            return <li className={style.pokemonCard}>
                 <button className={style.deletePokemonButton}
                         onClick={this.removePokemon.bind(this, pokemon)}>
                     &times;
                 </button>
-                {pokemon.name}
+                <h3 className={style.pokemonName}>{pokemon.name}</h3>
+                <img className={style.pokemonSprite}
+                     src={pokemon.sprites.front_default}
+                     alt={pokemon.name} />
+                <ol className={style.statsList}>
+                    {this.getStatsList(pokemon)}
+                </ol>
             </li>;
         });
     };

@@ -1,6 +1,7 @@
-.teamList {
+.teamList,
+.statsList {
     max-width: 400px;
-    margin: 50px 0 0 0;
+    margin: 0;
     padding: 0;
     list-style: none;
 }
@@ -11,13 +12,49 @@
     border-bottom: 1px solid lightgrey;
 }
 
+.statsList > li {
+    color: darkblue;
+    font-size: .75rem;
+}
+
+.pokemonCard {
+    padding: 20px;
+    position: relative;
+    background-color: lightblue;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .5);
+}
+
+.pokemonName {
+    display: block;
+    margin: 0 0 10px 0;
+    line-height: 2;
+    border-bottom: 1px solid darkblue;
+    color: darkblue;
+}
+
+.pokemonSprite {
+    float: left;
+    background: white;
+    margin-right: 10px;
+    display: block;
+    width: 96px;
+    height: 96px;
+}
+
 .deletePokemonButton {
+    display: block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
     color: darkred;
     font-weight: bold;
     font-size: 1rem;
-    margin-right: 10px;
     background-color: transparent;
     border: 2px solid darkred;
+    border-radius: 100%;
 }
 
 .deletePokemonButton:hover {
