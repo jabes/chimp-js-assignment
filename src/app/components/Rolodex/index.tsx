@@ -9,7 +9,8 @@ export namespace Rolodex {
 
     export interface State {
         error?: Error,
-        isLoaded: boolean,
+        isPokedexLoaded: boolean,
+        isFetchingPokemon: boolean,
         pokedex?: Pokedex,
         searchValue: string,
         suggestions: Suggestion[],
@@ -23,7 +24,8 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
         super(props);
 
         this.state = {
-            isLoaded: false,
+            isPokedexLoaded: false,
+            isFetchingPokemon: false,
             searchValue: '',
             suggestions: [],
             team: []
@@ -107,14 +109,14 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
                 (response: Response) => {
                     response.json().then((data) => {
                         this.setState({
-                            isLoaded: true,
+                            isPokedexLoaded: true,
                             pokedex: data
                         });
                     });
                 },
                 (error: Error) => {
                     this.setState({
-                        isLoaded: true,
+                        isPokedexLoaded: true,
                         error: error
                     });
                 }
@@ -122,13 +124,18 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
     };
 
     fetchPokemon = (index: number): void => {
+        this.setState({
+            isFetchingPokemon: true
+        });
+
         fetch(`https://pokeapi.co/api/v2/pokemon/${index}`)
             .then(
                 (response: Response) => {
                     response.json().then((data) => {
                         this.state.team.push(data);
                         this.setState({
-                            team: this.state.team
+                            team: this.state.team,
+                            isFetchingPokemon: false
                         });
                     });
                 }
@@ -142,12 +149,8 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
     };
 
     getTeamList = (): JSX.Element[] => {
-        return this.state.team.map((pokemon: Pokemon) => {
-            return <li className={style.pokemonCard}>
-                <button className={style.deletePokemonButton}
-                        onClick={this.removePokemon.bind(this, pokemon)}>
-                    &times;
-                </button>
+        let elements = this.state.team.map((pokemon: Pokemon) => (
+            <li className={style.pokemonCard}>
                 <h3 className={style.pokemonName}>{pokemon.name}</h3>
                 <img className={style.pokemonSprite}
                      src={pokemon.sprites.front_default}
@@ -155,12 +158,28 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
                 <ol className={style.statsList}>
                     {this.getStatsList(pokemon)}
                 </ol>
-            </li>;
-        });
+                <button className={style.deletePokemonButton}
+                        onClick={this.removePokemon.bind(this, pokemon)}>
+                    &times;
+                </button>
+            </li>
+        ));
+
+        if (this.state.isFetchingPokemon) {
+            elements.push(
+                <li className={style.pokemonCard}>
+                    <div className={style.loadingMessage}>
+                        Loading...
+                    </div>
+                </li>
+            )
+        }
+
+        return elements;
     };
 
     getTeam = (): JSX.Element => {
-        if (this.state.team.length > 0) {
+        if (this.state.team.length > 0 || this.state.isFetchingPokemon) {
             return (
                 <div>
                     <ol className={style.teamList}>
@@ -187,9 +206,9 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
 
         if (this.state.error) {
             return <div>Error: {this.state.error.message}</div>;
-        } else if (!this.state.isLoaded) {
+        } else if (!this.state.isPokedexLoaded) {
             return <div>Loading...</div>;
-        } else if (this.state.isLoaded && this.state.pokedex) {
+        } else if (this.state.isPokedexLoaded && this.state.pokedex) {
             return (
                 <div>
                     <Autosuggest

@@ -11,6 +11,7 @@
 }
 
 .pokemonCard {
+    overflow: hidden;
     display: inline-block;
     width: 300px;
     height: 180px;
@@ -58,6 +59,13 @@
     cursor: pointer;
     background-color: darkred;
     color: white;
+}
+
+.loadingMessage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .zeroStateMessage {
