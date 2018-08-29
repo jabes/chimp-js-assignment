@@ -144,12 +144,26 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
                 <h3 className={style.pokemonName}>{pokemon.name}</h3>
                 <img className={style.pokemonSprite}
                      src={pokemon.sprites.front_default}
-                     alt={pokemon.name} />
+                     alt={pokemon.name}/>
                 <ol className={style.statsList}>
                     {this.getStatsList(pokemon)}
                 </ol>
             </li>;
         });
+    };
+
+    getTeam = (): JSX.Element => {
+        if (this.state.team.length > 0) {
+            return (
+                <div>
+                    <ol className={style.teamList}>
+                        {this.getTeamList()}
+                    </ol>
+                </div>
+            );
+        } else {
+            return <p className="zeroStateMessage">No pokemon are on your team.</p>
+        }
     };
 
     componentDidMount(): void {
@@ -180,11 +194,7 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
                         renderSuggestion={this.renderSuggestion}
                         inputProps={inputProps}
                     />
-                    <div>
-                        <ol className={style.teamList}>
-                            {this.getTeamList()}
-                        </ol>
-                    </div>
+                    {this.getTeam()}
                 </div>
             );
         } else {
