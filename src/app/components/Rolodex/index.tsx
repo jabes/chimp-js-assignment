@@ -144,14 +144,14 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
     };
 
     getStatsList = (pokemon: Pokemon): JSX.Element[] => {
-        return pokemon.stats.map((stat: PokemonStat) => {
-            return <li>{stat.stat.name}: <b>{stat.base_stat}</b></li>;
+        return pokemon.stats.map((stat: PokemonStat, index: number) => {
+            return <li key={index}>{stat.stat.name}: <b>{stat.base_stat}</b></li>;
         });
     };
 
     getTeamList = (): JSX.Element[] => {
-        let elements = this.state.team.map((pokemon: Pokemon) => (
-            <li className={style.pokemonCard}>
+        let elements = this.state.team.map((pokemon: Pokemon, index: number) => (
+            <li key={index} className={style.pokemonCard}>
                 <h3 className={style.pokemonName}>{pokemon.name}</h3>
                 <img className={style.pokemonSprite}
                      src={pokemon.sprites.front_default}
@@ -168,7 +168,7 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
 
         if (this.state.isFetchingPokemon) {
             elements.push(
-                <li className={style.pokemonCard}>
+                <li key="loading" className={style.pokemonCard}>
                     <div className={style.loadingMessage}>
                         Loading...
                     </div>
