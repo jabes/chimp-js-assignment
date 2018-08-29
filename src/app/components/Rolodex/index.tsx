@@ -38,6 +38,10 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
         });
     };
 
+    onSuggestionSelected = (event: React.FormEvent, request: Autosuggest.SuggestionSelectedEventData<Suggestion>): void => {
+        this.addPokemon(request.suggestion);
+    };
+
     onSuggestionsFetchRequested = (request: Autosuggest.SuggestionsFetchRequestedParams): void => {
         this.setState({
             suggestions: this.getSuggestions(request.value)
@@ -69,16 +73,11 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
     };
 
     getSuggestionValue = (suggestion: Suggestion) => suggestion.name;
+    renderSuggestion = (suggestion: Suggestion): JSX.Element => <div>{suggestion.name}</div>;
 
     renderInputComponent = (inputProps: Autosuggest.InputProps<Suggestion>): JSX.Element => (
         <div>
             <input {...inputProps} disabled={this.state.team.length >= 6}/>
-        </div>
-    );
-
-    renderSuggestion = (suggestion: Suggestion): JSX.Element => (
-        <div onClick={this.addPokemon.bind(this, suggestion)}>
-            {suggestion.name}
         </div>
     );
 
@@ -215,6 +214,7 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
                     <Autosuggest
                         theme={theme}
                         suggestions={this.state.suggestions}
+                        onSuggestionSelected={this.onSuggestionSelected}
                         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
                         onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                         getSuggestionValue={this.getSuggestionValue}
