@@ -20,8 +20,11 @@ export namespace Rolodex {
 
 export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
 
-    constructor(props: Rolodex.Props) {
-        super(props);
+    static defaultProps: Partial<Rolodex.Props> = {};
+    static maxTeamSize: number = 6;
+
+    constructor(props: Rolodex.Props, context?: any) {
+        super(props, context);
 
         this.state = {
             isPokedexLoaded: false,
@@ -77,7 +80,8 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
 
     renderInputComponent = (inputProps: Autosuggest.InputProps<Suggestion>): JSX.Element => (
         <div>
-            <input {...inputProps} disabled={this.state.team.length >= 6}/>
+            <input {...inputProps}
+                   disabled={this.state.isFetchingPokemon || this.state.team.length >= Rolodex.maxTeamSize}/>
         </div>
     );
 
@@ -86,7 +90,6 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
             this.state.pokedex.pokemon_entries.forEach((object: PokedexPokemonEntry) => {
                 if (object.pokemon_species.name === suggestion.name) {
                     this.fetchPokemon(object.entry_number);
-                    setTimeout(() => this.setState({searchValue: ''}), 0);
                 }
             });
         }
@@ -135,7 +138,8 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
                         this.state.team.push(data);
                         this.setState({
                             team: this.state.team,
-                            isFetchingPokemon: false
+                            isFetchingPokemon: false,
+                            searchValue: ''
                         });
                     });
                 }
@@ -182,6 +186,7 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
         if (this.state.team.length > 0 || this.state.isFetchingPokemon) {
             return (
                 <div>
+                    <h2 className={style.teamHeader}>My Team ({this.state.team.length}/{Rolodex.maxTeamSize})</h2>
                     <ol className={style.teamList}>
                         {this.getTeamList()}
                     </ol>
@@ -222,7 +227,6 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
                         renderSuggestion={this.renderSuggestion}
                         inputProps={inputProps}
                     />
-                    <h2 className={style.teamHeader}>My Team</h2>
                     {this.getTeam()}
                 </div>
             );
