@@ -17,6 +17,9 @@
     "node": "10.9.x"
   },
   "devDependencies": {
+    "@babel/core": "7.0.0",
+    "@babel/preset-env": "7.0.0",
+    "@babel/preset-react": "7.0.0",
     "@types/node": "10.9.3",
     "@types/react": "16.4.12",
     "@types/react-autosuggest": "9.3.5",
@@ -72,7 +75,6 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --hot --progress --color --port 3000 --open",
     "build": "webpack --progress --color --display-error-details",
-    "watch": "webpack --watch",
-    "lint": "eslint src --debug"
+    "build-prod": "NODE_ENV=production npm run build"
   }
 }

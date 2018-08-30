@@ -2,7 +2,8 @@ const webpack = require('webpack');
 const path = require('path');
 
 // variables
-const isProduction = process.argv.indexOf('-p') >= 0 || process.env.NODE_ENV === 'production';
+const environment = String(process.env.NODE_ENV) || 'development';
+const isProduction = environment === 'production';
 const sourcePath = path.join(__dirname, './src');
 const outPath = path.join(__dirname, './dist');
 
@@ -12,6 +13,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 
 module.exports = {
+    mode: environment,
     context: sourcePath,
     entry: {
         app: './main.tsx'
@@ -32,6 +34,7 @@ module.exports = {
     },
     module: {
         rules: [
+            // My code is not perfect okay
             // {
             //     enforce: 'pre',
             //     test: /\.tsx?$/,
@@ -40,12 +43,12 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 use: [
-                    // !isProduction && {
-                    //     loader: 'babel-loader',
-                    //     options: {
-                    //         plugins: ['react-hot-loader/babel']
-                    //     }
-                    // },
+                    !isProduction && {
+                        loader: 'babel-loader',
+                        options: {
+                            plugins: ['react-hot-loader/babel']
+                        }
+                    },
                     'ts-loader'
                 ].filter(Boolean)
             },
@@ -105,8 +108,7 @@ module.exports = {
     },
     plugins: [
         new webpack.EnvironmentPlugin({
-            NODE_ENV: 'development',
-            DEBUG: false
+            NODE_ENV: environment
         }),
         new WebpackCleanupPlugin(),
         new MiniCssExtractPlugin({

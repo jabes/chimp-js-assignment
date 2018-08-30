@@ -23,5 +23,12 @@ See wireframe: [https://wireframe.cc/Th0e6q](https://wireframe.cc/Th0e6q)
 - Feel free to use your favourite framework and plugins but please include attribution.
 - Any scaffolding code should be in it's own commit. This makes it easier for the team to do code review.
 
-## How To Use:
-- `npm install && npm start`
+## Development Use:
+- `npm install`
+- `npm start`
+
+## Production Use:
+- `npm install`
+- `npm run build-prod`
+- `cd dist`
+- `python3 -m http.server`
