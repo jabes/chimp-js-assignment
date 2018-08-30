@@ -205,9 +205,9 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
         };
 
         if (this.state.error) {
-            return <div>Error: {this.state.error.message}</div>;
+            return <div className={style.componentError}>Error: {this.state.error.message}</div>;
         } else if (!this.state.isPokedexLoaded) {
-            return <div>Loading...</div>;
+            return <div className={style.componentLoading}>Loading...</div>;
         } else if (this.state.isPokedexLoaded && this.state.pokedex) {
             return (
                 <div>

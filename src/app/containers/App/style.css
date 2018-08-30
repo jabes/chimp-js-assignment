@@ -1,0 +1,10 @@
+.outterContainer {
+    min-height: 100vh;
+    background-color: #FFDE00;
+}
+
+.innerContainer {
+    margin: auto;
+    max-width: 1000px;
+    padding: 20px;
+}

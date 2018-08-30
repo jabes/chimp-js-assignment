@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: #B3A125;
-    padding: 20px;
+    justify-content: center;
+    padding: 20px 0;
     margin-bottom: 10px;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .title {
-    flex: auto;
+    flex: none;
     font-weight: bold;
     font-size: 3rem;
     line-height: 1;

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as style from './style.css';
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 import {RouteComponentProps} from 'react-router';
@@ -36,10 +37,12 @@ export class App extends React.Component<App.Props> {
 
     render() {
         return (
-            <div>
-                <Header/>
-                <Rolodex/>
-                <Footer/>
+            <div className={style.outterContainer}>
+                <div className={style.innerContainer}>
+                    <Header/>
+                    <Rolodex/>
+                    <Footer/>
+                </div>
             </div>
         );
     }
