@@ -17,8 +17,8 @@
     "node": "10.9.x"
   },
   "devDependencies": {
-    "@babel/core": "7.0.0",
-    "@babel/preset-env": "7.0.0",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "7.0.0",
     "@types/node": "10.9.3",
     "@types/react": "16.4.12",
@@ -35,7 +35,7 @@
     "babel-preset-env": "1.7.0",
     "babel-preset-react": "6.24.1",
     "css-loader": "1.0.0",
-    "eslint": "5.4.0",
+    "eslint": "^5.15.1",
     "eslint-config-eslint": "5.0.1",
     "eslint-loader": "2.1.0",
     "eslint-plugin-import": "2.14.0",
@@ -60,7 +60,7 @@
     "webpack": "4.17.1",
     "webpack-cleanup-plugin": "0.5.1",
     "webpack-cli": "3.1.0",
-    "webpack-dev-server": "3.1.6"
+    "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
     "react": "16.4.2",
