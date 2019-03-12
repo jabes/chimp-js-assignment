@@ -80,9 +80,7 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
 
     renderInputComponent = (inputProps: Autosuggest.InputProps<Suggestion>): JSX.Element => (
         <div>
-            <input {...inputProps}
-                   onChange={this.onChange}
-                   disabled={this.state.isFetchingPokemon || this.state.team.length >= Rolodex.maxTeamSize}/>
+            <input {...inputProps} disabled={this.state.isFetchingPokemon || this.state.team.length >= Rolodex.maxTeamSize}/>
         </div>
     );
 
