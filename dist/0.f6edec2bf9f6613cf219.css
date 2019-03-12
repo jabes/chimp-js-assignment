@@ -1,20 +1,25 @@
 @font-face {
     font-family: "PokemonHollow";
-    src: url("/assets/fonts/pokemon-hollow.ttf");
+    src: url(6e5393a64ca23c455e8568d409e82da6.ttf);
 }
 
 @font-face {
     font-family: "PokemonSolid";
-    src: url("/assets/fonts/pokemon-solid.ttf");
+    src: url(36d26dbcd032a9d91d891c9f22dfdec6.ttf);
 }
 
 @font-face {
-    font-family: "LemonYellowSun";
-    src: url("/assets/fonts/lemon-yellow-sun.otf");
+    font-family: "DoctorSoosBold";
+    src: url(ffb9fc038c9bcb9b1660133c65ce56b4.ttf);
+}
+
+@font-face {
+    font-family: "DoctorSoosLight";
+    src: url(8593274c46a82ae2cfad43d35bdbda1f.ttf);
 }
 
 body {
-    font-family: "LemonYellowSun";
+    font-family: "DoctorSoosLight";
     color: black;
 }
 
