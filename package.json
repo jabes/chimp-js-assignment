@@ -1,5 +1,5 @@
 {
-  "name": "chimp-js-assessment",
+  "name": "pokedex",
   "description": "A simple Pokemon rolodex app.",
   "private": true,
   "version": "1.0.0",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/chimptech/chimp-js-assignment-justin-bull"
+    "url": "https://github.com/jabes/pokedex"
   },
   "engines": {
     "node": "10.9.x"
@@ -63,14 +63,14 @@
     "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
-    "react": "16.4.2",
-    "react-autosuggest": "9.4.0",
-    "react-dom": "16.4.2",
-    "react-redux": "5.0.7",
+    "react": "16.8.4",
+    "react-autosuggest": "9.4.3",
+    "react-dom": "16.8.4",
+    "react-redux": "6.0.1",
     "react-router": "4.3.1",
-    "react-router-redux": "5.0.0-alpha.9",
-    "redux": "4.0.0",
-    "redux-actions": "2.6.1"
+    "react-router-redux": "4.0.8",
+    "redux": "4.0.1",
+    "redux-actions": "2.6.5"
   },
   "scripts": {
     "start": "webpack-dev-server --mode development --hot --progress --color --port 3000 --open",

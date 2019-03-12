@@ -1,6 +1,6 @@
 ![](screenshot.png)
 
-# Chimp Front-End Developer Javascript Code Challenge
+# Pokédex
 
 A simple React app to find and add pokemon to a team.
 
