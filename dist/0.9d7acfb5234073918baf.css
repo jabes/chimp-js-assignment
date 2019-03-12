@@ -1,3 +1,23 @@
+@font-face {
+    font-family: "PokemonHollow";
+    src: url("/assets/fonts/pokemon-hollow.ttf");
+}
+
+@font-face {
+    font-family: "PokemonSolid";
+    src: url("/assets/fonts/pokemon-solid.ttf");
+}
+
+@font-face {
+    font-family: "LemonYellowSun";
+    src: url("/assets/fonts/lemon-yellow-sun.otf");
+}
+
+body {
+    font-family: "LemonYellowSun";
+    color: black;
+}
+
 ._37Djk {
     min-height: 100vh;
     background-color: #FFDE00;
@@ -27,12 +47,13 @@
 
 ._2VlhR {
     flex: none;
+    font-family: "PokemonSolid";
     font-weight: bold;
-    font-size: 3rem;
+    font-size: 4rem;
     line-height: 1;
     margin: 0;
     color: white;
-    -webkit-text-stroke: 2px black;
+    -webkit-text-stroke: .2rem black;
 }
 
 ._1a_bw {

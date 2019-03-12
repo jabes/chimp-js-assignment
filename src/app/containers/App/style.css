@@ -1,3 +1,23 @@
+@font-face {
+    font-family: "PokemonHollow";
+    src: url("/assets/fonts/pokemon-hollow.ttf");
+}
+
+@font-face {
+    font-family: "PokemonSolid";
+    src: url("/assets/fonts/pokemon-solid.ttf");
+}
+
+@font-face {
+    font-family: "LemonYellowSun";
+    src: url("/assets/fonts/lemon-yellow-sun.otf");
+}
+
+body {
+    font-family: "LemonYellowSun";
+    color: black;
+}
+
 .outterContainer {
     min-height: 100vh;
     background-color: #FFDE00;

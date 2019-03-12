@@ -16,10 +16,11 @@
 
 .title {
     flex: none;
+    font-family: "PokemonSolid";
     font-weight: bold;
-    font-size: 3rem;
+    font-size: 4rem;
     line-height: 1;
     margin: 0;
     color: white;
-    -webkit-text-stroke: 2px black;
+    -webkit-text-stroke: .2rem black;
 }

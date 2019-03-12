@@ -41,7 +41,7 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
         });
     };
 
-    onSuggestionSelected = (event: React.FormEvent, request: Autosuggest.SuggestionSelectedEventData<Suggestion>): void => {
+    onSuggestionSelected = (event: React.FormEvent<any>, request: Autosuggest.SuggestionSelectedEventData<Suggestion>): void => {
         this.addPokemon(request.suggestion);
     };
 
@@ -81,6 +81,7 @@ export class Rolodex extends React.Component<Rolodex.Props, Rolodex.State> {
     renderInputComponent = (inputProps: Autosuggest.InputProps<Suggestion>): JSX.Element => (
         <div>
             <input {...inputProps}
+                   onChange={this.onChange}
                    disabled={this.state.isFetchingPokemon || this.state.team.length >= Rolodex.maxTeamSize}/>
         </div>
     );
