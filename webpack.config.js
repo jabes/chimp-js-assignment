@@ -4,8 +4,8 @@ const path = require('path');
 // variables
 const environment = String(process.env.NODE_ENV) || 'development';
 const isProduction = environment === 'production';
-const sourcePath = path.join(__dirname, './src');
-const outPath = path.join(__dirname, './dist');
+const sourcePath = path.join(__dirname, 'src');
+const outPath = path.join(__dirname, 'dist');
 
 // plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -22,7 +22,7 @@ module.exports = {
         path: outPath,
         filename: 'bundle.js',
         chunkFilename: '[chunkhash].js',
-        publicPath: '/'
+        publicPath: isProduction ? '/dist/' : '/',
     },
     target: 'web',
     resolve: {
