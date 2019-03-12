@@ -22,7 +22,7 @@ module.exports = {
         path: outPath,
         filename: 'bundle.js',
         chunkFilename: '[chunkhash].js',
-        publicPath: isProduction ? '/dist/' : '/',
+        publicPath: '',
     },
     target: 'web',
     resolve: {
